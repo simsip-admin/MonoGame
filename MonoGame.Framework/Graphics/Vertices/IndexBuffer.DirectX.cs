@@ -9,6 +9,15 @@ namespace Microsoft.Xna.Framework.Graphics
 {
     public partial class IndexBuffer
     {
+#if SIMSIP_DESKTOP
+        public void SimsipSetPrivateData(string data)
+        {
+            IntPtr strPtr = Marshal.StringToHGlobalAnsi(data);
+            GenerateIfRequired();
+            _buffer.SetPrivateData(SharpDX.Direct3D.CommonGuid.DebugObjectName, data.Length, strPtr);
+        }
+#endif
+
         private SharpDX.Direct3D11.Buffer _buffer;
 
         internal SharpDX.Direct3D11.Buffer Buffer

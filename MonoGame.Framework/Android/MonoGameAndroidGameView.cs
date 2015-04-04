@@ -19,7 +19,11 @@ namespace Microsoft.Xna.Framework
     /// <summary>
     /// Our override of OpenTK.AndroidGameView. Provides Touch and Key Input handling.
     /// </summary>
+#if SIMSIP_ANDROID
+    public class MonoGameAndroidGameView : AndroidGameView, View.IOnTouchListener, ISurfaceHolderCallback
+#else
     internal class MonoGameAndroidGameView : AndroidGameView, View.IOnTouchListener, ISurfaceHolderCallback
+#endif
     {
         private readonly AndroidGameWindow _gameWindow;
         private readonly Game _game;

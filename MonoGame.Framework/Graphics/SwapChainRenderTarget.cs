@@ -98,8 +98,12 @@ namespace Microsoft.Xna.Framework.Graphics
             var d3dDevice = graphicsDevice._d3dDevice;
 
             // First, retrieve the underlying DXGI Device from the D3D Device.
-            // Creates the swap chain 
+            // Creates the swap chain
+#if SIMSIP_DESKTOP
+            using (var dxgiDevice = d3dDevice.QueryInterface<SharpDX.DXGI.Device1>())
+#else
             using (var dxgiDevice = d3dDevice.QueryInterface<Device1>())
+#endif
             using (var dxgiAdapter = dxgiDevice.Adapter)
             using (var dxgiFactory = dxgiAdapter.GetParent<Factory1>())
             {

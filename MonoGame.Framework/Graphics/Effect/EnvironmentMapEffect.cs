@@ -466,7 +466,11 @@ namespace Microsoft.Xna.Framework.Graphics
         /// <summary>
         /// Lazily computes derived parameter values immediately before applying the effect.
         /// </summary>
+#if SIMSIP_ALL
+        public override bool OnApply()
+#else
         protected internal override bool OnApply()
+#endif
         {
             // Recompute the world+view+projection matrix or fog vector?
             dirtyFlags = EffectHelpers.SetWorldViewProjAndFog(dirtyFlags, ref world, ref view, ref projection, ref worldView, fogEnabled, fogStart, fogEnd, worldViewProjParam, fogVectorParam);

@@ -44,8 +44,11 @@ using Microsoft.Xna.Framework.Utilities;
 
 namespace Microsoft.Xna.Framework.Content
 {
-
+#if SIMSIP_IOS || SIMSIP_PHONE
+    public class DictionaryReader<TKey, TValue> : ContentTypeReader<Dictionary<TKey, TValue>>
+#else
     internal class DictionaryReader<TKey, TValue> : ContentTypeReader<Dictionary<TKey, TValue>>
+#endif
     {
         ContentTypeReader keyReader;
 		ContentTypeReader valueReader;

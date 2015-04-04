@@ -3,11 +3,23 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
+#if SIMSIP_DESKTOP
+using System.Runtime.InteropServices;
+#endif
 
 namespace Microsoft.Xna.Framework.Graphics
 {
     public abstract partial class Texture
     {
+#if SIMSIP_DESKTOP
+        public void SimsipSetPrivateData(string data)
+        {
+            IntPtr strPtr = Marshal.StringToHGlobalAnsi(data);
+            var texture = GetTexture();
+            texture.SetPrivateData(SharpDX.Direct3D.CommonGuid.DebugObjectName, data.Length, strPtr);
+        }
+#endif
+
         internal SharpDX.Direct3D11.Resource _texture;
 
         private SharpDX.Direct3D11.ShaderResourceView _resourceView;

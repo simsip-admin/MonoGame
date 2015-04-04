@@ -198,10 +198,17 @@ namespace Microsoft.Xna.Framework.Graphics
             return new Effect(this);
 		}
 
+#if SIMSIP_ALL
+        public virtual bool OnApply()
+        {
+            return false;
+        }
+#else
         protected internal virtual bool OnApply()
         {
             return false;
         }
+#endif
 
         protected override void Dispose(bool disposing)
         {

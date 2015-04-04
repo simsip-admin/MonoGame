@@ -351,6 +351,18 @@ namespace Microsoft.Xna.Framework.Graphics
 
         #region Methods
 
+#if SIMSIP_ALL
+        public BasicEffect(GraphicsDevice device, byte[] byteCode)
+            : base(device, byteCode)
+        {
+            CacheEffectParameters(null);
+
+            DirectionalLight0.Enabled = true;
+            SpecularColor = Vector3.One;
+            SpecularPower = 16;
+        }
+#endif
+
         /// <summary>
         /// Creates a new BasicEffect with default parameter settings.
         /// </summary>
@@ -452,7 +464,11 @@ namespace Microsoft.Xna.Framework.Graphics
         /// <summary>
         /// Lazily computes derived parameter values immediately before applying the effect.
         /// </summary>
+#if SIMSIP_ALL
+        public override bool OnApply()
+#else
         protected internal override bool OnApply()
+#endif
         {
             // Recompute the world+view+projection matrix or fog vector?
             dirtyFlags = EffectHelpers.SetWorldViewProjAndFog(dirtyFlags, ref world, ref view, ref projection, ref worldView, fogEnabled, fogStart, fogEnd, worldViewProjParam, fogVectorParam);

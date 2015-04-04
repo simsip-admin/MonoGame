@@ -12,12 +12,22 @@ using OpenTK.Graphics.ES30;
 #endif
 #endif
 
+#if DIRECTX
+#if SIMSIP_DESKTOP
+using SharpDX.Direct3D11;
+#endif
+#endif
+
 namespace Microsoft.Xna.Framework.Graphics
 {
 	public class OcclusionQuery : GraphicsResource
 	{
 #if OPENGL
 		private int glQueryId;
+#elif DIRECTX
+#if SIMSIP_DESKTOP
+        private Query _d3dQuery;
+#endif
 #endif
 
 		public OcclusionQuery (GraphicsDevice graphicsDevice)
@@ -27,6 +37,10 @@ namespace Microsoft.Xna.Framework.Graphics
 			GL.GenQueries (1, out glQueryId);
             GraphicsExtensions.CheckGLError();
 #elif DIRECTX
+#if SIMSIP_DESKTOP
+            _d3dQuery = new Query(graphicsDevice._d3dDevice, new QueryDescription() { Type = QueryType.Occlusion, Flags = QueryFlags.None });
+#endif
+
 #endif
 		}
 
@@ -40,6 +54,9 @@ namespace Microsoft.Xna.Framework.Graphics
 #endif
             GraphicsExtensions.CheckGLError();
 #elif DIRECTX
+#if SIMSIP_DESKTOP
+            _d3dQuery.Device.ImmediateContext.End(_d3dQuery);
+#endif
 #endif
 
 		}
@@ -54,6 +71,9 @@ namespace Microsoft.Xna.Framework.Graphics
 #endif
             GraphicsExtensions.CheckGLError();
 #elif DIRECTX
+#if SIMSIP_DESKTOP
+            _d3dQuery.Device.ImmediateContext.End(_d3dQuery);
+#endif
 #endif
 
 		}
@@ -69,11 +89,17 @@ namespace Microsoft.Xna.Framework.Graphics
                     GraphicsExtensions.CheckGLError();
                 });
 #elif DIRECTX
+#if SIMSIP_DESKTOP
+                _d3dQuery.Dispose();
+#endif
 #endif
             }
             base.Dispose(disposing);
 		}
 
+#if SIMSIP_DESKTOP
+        private ulong _result;
+#endif
 		public bool IsComplete {
 			get {
 				int resultReady = 0;
@@ -84,7 +110,10 @@ namespace Microsoft.Xna.Framework.Graphics
 #elif OPENGL
                 GL.GetQueryObject(glQueryId, GetQueryObjectParam.QueryResultAvailable, out resultReady);
                 GraphicsExtensions.CheckGLError();
-#elif DIRECTX               
+#elif DIRECTX
+#if SIMSIP_DESKTOP
+                return GraphicsDevice._d3dContext.GetData(_d3dQuery, out _result);
+#endif
 #endif
 				return resultReady != 0;
 			}
@@ -99,7 +128,10 @@ namespace Microsoft.Xna.Framework.Graphics
 #elif OPENGL
                 GL.GetQueryObject(glQueryId, GetQueryObjectParam.QueryResultAvailable, out result);
                 GraphicsExtensions.CheckGLError();
-#elif DIRECTX               
+#elif DIRECTX     
+#if SIMSIP_DESKTOP
+                return (int)_result;
+#endif
 #endif
                 return result;
 			}

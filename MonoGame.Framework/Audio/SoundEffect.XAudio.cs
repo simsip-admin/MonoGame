@@ -74,6 +74,7 @@ namespace Microsoft.Xna.Framework.Audio
                 if (Device == null)
                 {
 #if !WINRT && DEBUG
+#if !SIMSIP_DESKTOP
                     try
                     {
                         //Fails if the XAudio2 SDK is not installed
@@ -81,6 +82,7 @@ namespace Microsoft.Xna.Framework.Audio
                         Device.StartEngine();
                     }
                     catch
+#endif
 #endif
                     {
                         Device = new XAudio2(XAudio2Flags.None, ProcessorSpecifier.DefaultProcessor);
@@ -90,6 +92,8 @@ namespace Microsoft.Xna.Framework.Audio
 
                 // Just use the default device.
 #if WINRT
+                string deviceId = null;
+#elif SIMSIP_DESKTOP
                 string deviceId = null;
 #else
                 const int deviceId = 0;
@@ -103,6 +107,8 @@ namespace Microsoft.Xna.Framework.Audio
 
                 // The autodetected value of MasterVoice.ChannelMask corresponds to the speaker layout.
 #if WINRT
+                Speakers = (Speakers)MasterVoice.ChannelMask;
+#elif SIMSIP_DESKTOP
                 Speakers = (Speakers)MasterVoice.ChannelMask;
 #else
                 var deviceDetails = Device.GetDeviceDetails(deviceId);

@@ -31,6 +31,45 @@ namespace Microsoft.Xna.Framework.Graphics
 {
     public partial class GraphicsDevice
     {
+#if SIMSIP_DESKTOP
+        private SharpDX.Direct3D11.UserDefinedAnnotation _annotation;
+
+        public void BeginEvent(string name)
+        {
+            _annotation.BeginEvent(name);
+        }
+        public void EndEvent()
+        {
+            _annotation.EndEvent();
+        }
+
+        /// <summary>
+        /// Doesn't seem to be working on NSight
+        /// </summary>
+        /// <param name="name"></param>
+        public void SetMarker(string name)
+        {
+            _annotation.SetMarker(name);
+        }
+
+        /// <summary>
+        /// Doesn't seem to be working either on NSight
+        /// </summary>
+        /// <param name="name"></param>
+        public void SetMarkerViaEvents(string name)
+        {
+            _annotation.BeginEvent(name);
+            _annotation.EndEvent();
+        }
+
+        public bool Status()
+        {
+            // Was BOOL, but got warning that this was not CLS compliant
+            return _annotation.Status;
+        }
+
+#endif
+
         // Core Direct3D Objects
         internal SharpDX.Direct3D11.Device _d3dDevice;
         internal SharpDX.Direct3D11.DeviceContext _d3dContext;
@@ -590,6 +629,12 @@ namespace Microsoft.Xna.Framework.Graphics
 
             // Get Direct3D 11.1 context
             _d3dContext = _d3dDevice.ImmediateContext.QueryInterface<SharpDX.Direct3D11.DeviceContext>();
+
+#if SIMSIP_DESKTOP
+            // UserDefinedAnnotation annot = _d3dContext.QueryInterface<SharpDX.Direct3D11.UserDefinedAnnotation>();
+            _annotation = _d3dDevice.ImmediateContext.QueryInterface<SharpDX.Direct3D11.UserDefinedAnnotation>();
+#endif
+
         }
 
         internal void CreateSizeDependentResources(bool useFullscreenParameter = false)

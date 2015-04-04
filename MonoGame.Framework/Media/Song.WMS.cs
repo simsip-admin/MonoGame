@@ -26,13 +26,21 @@ namespace Microsoft.Xna.Framework.Media
 
             SharpDX.MediaFoundation.MediaSource mediaSource;
             {
+#if SIMSIP_DESKTOP
+                SourceResolver resolver = null;
+#else
                 SourceResolver resolver;
                 MediaFactory.CreateSourceResolver(out resolver);
+#endif
 
                 ObjectType otype;
+#if SIMSIP_DESKTOP
+                ComObject source = null;
+#else
                 ComObject source;
                 resolver.CreateObjectFromURL(FilePath, (int)SourceResolverFlags.MediaSource, null, out otype,
                                                 out source);
+#endif
                 mediaSource = source.QueryInterface<SharpDX.MediaFoundation.MediaSource>();
                 resolver.Dispose();
                 source.Dispose();

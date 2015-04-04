@@ -18,7 +18,11 @@ namespace Microsoft.Xna.Framework
     [CLSCompliant(false)]
     public class AndroidGameWindow : GameWindow, IDisposable
     {
+#if SIMSIP_ANDROID
+        public MonoGameAndroidGameView GameView { get; private set; }
+#else
         internal MonoGameAndroidGameView GameView { get; private set; }
+#endif
         internal IResumeManager Resumer;
 
         private readonly Game _game;

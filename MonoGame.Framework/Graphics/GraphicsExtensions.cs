@@ -21,7 +21,11 @@ using TexCoordPointerType = OpenTK.Graphics.ES20.All;
 
 namespace Microsoft.Xna.Framework.Graphics
 {
+#if SIMSIP_ALL
+    public static class GraphicsExtensions
+#else
     static class GraphicsExtensions
+#endif
     {
 #if OPENGL
         public static All OpenGL11(CullMode cull)

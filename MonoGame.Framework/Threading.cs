@@ -63,7 +63,11 @@ using System.Windows;
 
 namespace Microsoft.Xna.Framework
 {
-    internal class Threading
+#if SIMSIP_PHONE
+    public class Threading
+#else
+        internal class Threading
+#endif
     {
         public const int kMaxWaitForUIThread = 750; // In milliseconds
 
@@ -118,17 +122,29 @@ namespace Microsoft.Xna.Framework
         }
 
 #if WINDOWS_PHONE
+#if SIMSIP_PHONE
+        public static void RunOnUIThread(Action action)
+#else
         internal static void RunOnUIThread(Action action)
+#endif
         {
             RunOnContainerThread(Deployment.Current.Dispatcher, action);
         }
         
+#if SIMSIP_PHONE
+        public static void RunOnContainerThread(System.Windows.Threading.Dispatcher target, Action action)
+#else
         internal static void RunOnContainerThread(System.Windows.Threading.Dispatcher target, Action action)
+#endif
         {
             target.BeginInvoke(action);
         }
 
+#if SIMSIP_PHONE
+        public static void BlockOnContainerThread(System.Windows.Threading.Dispatcher target, Action action)
+#else
         internal static void BlockOnContainerThread(System.Windows.Threading.Dispatcher target, Action action)
+#endif
         {
             if (target.CheckAccess())
             {
@@ -152,7 +168,11 @@ namespace Microsoft.Xna.Framework
         /// If the current thread is the UI thread, the action will run immediately.
         /// </summary>
         /// <param name="action">The action to be run on the UI thread</param>
+#if SIMSIP_PHONE
+        public static void BlockOnUIThread(Action action)
+#else
         internal static void BlockOnUIThread(Action action)
+#endif
         {
             if (action == null)
                 throw new ArgumentNullException("action");
