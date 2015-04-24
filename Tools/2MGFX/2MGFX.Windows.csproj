@@ -50,9 +50,6 @@
     <Reference Include="SharpDX.D3DCompiler">
       <HintPath>..\..\ThirdParty\Dependencies\SharpDX\Windows\SharpDX.D3DCompiler.dll</HintPath>
     </Reference>
-    <Reference Include="CppNet">
-      <HintPath>..\..\ThirdParty\Dependencies\CppNet\CppNet.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -149,9 +146,6 @@
     <Compile Include="..\..\MonoGame.Framework\Ray.cs">
       <Link>MonoGame.Framework\Ray.cs</Link>
     </Compile>
-    <Compile Include="..\..\MonoGame.Framework\Rectangle.cs">
-      <Link>MonoGame.Framework\Rectangle.cs</Link>
-    </Compile>
     <Compile Include="..\..\MonoGame.Framework\Vector2.cs">
       <Link>MonoGame.Framework\Vector2.cs</Link>
     </Compile>
@@ -180,6 +174,7 @@
       <Link>MonoGame.Framework\Utilities\Hash.cs</Link>
     </Compile>
     <Compile Include="MonoGame.Framework\GraphicsDevice.cs" />
+    <Compile Include="CompilerInclude.cs" />
     <Compile Include="ConstantBufferData.cs" />
     <Compile Include="ConstantBufferData.mojo.cs" />
     <Compile Include="ConstantBufferData.sharpdx.cs" />
@@ -188,7 +183,6 @@
     <Compile Include="EffectObject.hlsl.cs" />
     <Compile Include="EffectObject.pssl.cs" />
     <Compile Include="EffectObject.writer.cs" />
-    <Compile Include="IEffectCompilerOutput.cs" />
     <Compile Include="ShaderCompilerException.cs" />
     <Compile Include="ShaderData.cs" />
     <Compile Include="ShaderData.mojo.cs" />
@@ -207,7 +201,6 @@
     <Compile Include="ParseTree.cs" />
     <Compile Include="Scanner.cs" />
     <Compile Include="ParseTreeTools.cs" />
-    <Compile Include="Preprocessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\ThirdParty\Dependencies\MojoShader\Windows\libmojoshader_64.dll">

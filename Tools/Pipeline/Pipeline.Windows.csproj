@@ -81,9 +81,6 @@
     <Compile Include="Common\PipelineTypes.cs" />
     <Compile Include="Common\Extensions.cs" />
     <Compile Include="Windows\UpdateAction.cs" />
-    <Compile Include="Windows\ContentIcons.cs">
-      <Platforms>Windows</Platforms>
-    </Compile>
     <Compile Include="Windows\EditorIcons.cs">
       <Platforms>Windows</Platforms>
     </Compile>
@@ -130,27 +127,6 @@
       <Platforms>Windows</Platforms>
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Windows\AddFileDialog.cs">
-      <Platforms>Windows</Platforms>
-    </Compile>
-    <Compile Include="Windows\AddFileDialog.Designer.cs">
-      <Platforms>Windows</Platforms>
-      <DependentUpon>AddFileDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\AddFolderDialog.cs">
-      <Platforms>Windows</Platforms>
-    </Compile>
-    <Compile Include="Windows\AddFolderDialog.Designer.cs">
-      <Platforms>Windows</Platforms>
-      <DependentUpon>AddFolderDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\TextEditDialog.cs">
-      <Platforms>Windows</Platforms>
-    </Compile>
-    <Compile Include="Windows\TextEditDialog.Designer.cs">
-      <Platforms>Windows</Platforms>
-      <DependentUpon>TextEditDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <Platforms>Windows</Platforms>
       <AutoGen>True</AutoGen>
@@ -192,18 +168,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Windows\AddFileDialog.resx">
-      <Platforms>Windows</Platforms>
-      <DependentUpon>AddFileDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Windows\AddFolderDialog.resx">
-      <Platforms>Windows</Platforms>
-      <DependentUpon>AddFolderDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Windows\TextEditDialog.resx">
-      <Platforms>Windows</Platforms>
-      <DependentUpon>TextEditDialog.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Windows\MainView.resx">
       <Platforms>Windows</Platforms>
       <DependentUpon>MainView.cs</DependentUpon>
@@ -227,7 +191,6 @@
     <EmbeddedResource Include="Icons\missing.png" />
     <EmbeddedResource Include="Icons\folder_closed.png" />
     <EmbeddedResource Include="Icons\folder_open.png" />
-    <EmbeddedResource Include="Icons\folder_missing.png" />
     <EmbeddedResource Include="Icons\settings.png" />
   </ItemGroup>
   <ItemGroup />
