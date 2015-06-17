@@ -25,9 +25,9 @@
     <Optimize>false</Optimize>
     <DebugType>full</DebugType>
     <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>
-    <OutputPath>bin\Android\AnyCPU\Debug</OutputPath>
-    <IntermediateOutputPath>obj\Android\AnyCPU\Debug</IntermediateOutputPath>
-    <DocumentationFile>bin\Android\AnyCPU\Debug\MonoGame.Framework.Net.xml</DocumentationFile>
+    <OutputPath>bin\AndroidMFN\AnyCPU\Debug</OutputPath>
+    <IntermediateOutputPath>obj\AndroidMFN\AnyCPU\Debug</IntermediateOutputPath>
+    <DocumentationFile>bin\AndroidMFN\AnyCPU\Debug\MonoGame.Framework.Net.xml</DocumentationFile>
     <DefineConstants>DEBUG;TRACE;ANDROID;GLES;OPENGL;NET</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -37,9 +37,9 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
     <DebugType>none</DebugType>
-    <OutputPath>bin\Android\AnyCPU\Release</OutputPath>
-    <IntermediateOutputPath>obj\Android\AnyCPU\Release</IntermediateOutputPath>
-    <DocumentationFile>bin\Android\AnyCPU\Release\MonoGame.Framework.Net.xml</DocumentationFile>
+    <OutputPath>bin\AndroidMFN\AnyCPU\Release</OutputPath>
+    <IntermediateOutputPath>obj\AndroidMFN\AnyCPU\Release</IntermediateOutputPath>
+    <DocumentationFile>bin\AndroidMFN\AnyCPU\Release\MonoGame.Framework.Net.xml</DocumentationFile>
     <DefineConstants>TRACE;ANDROID;GLES;OPENGL;NET</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -55,7 +55,7 @@
     <Reference Include="mscorlib" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="GamerServices\AchievementCollection.cs">
       <ExcludePlatforms>WindowsPhone</ExcludePlatforms>
     </Compile>
@@ -211,7 +211,9 @@
       <Platforms>Android,Ouya</Platforms>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
   <ItemGroup />
   <ItemGroup />
   <ItemGroup />

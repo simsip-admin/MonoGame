@@ -40,7 +40,7 @@
     <OutputPath>bin\Android\AnyCPU\Release</OutputPath>
     <IntermediateOutputPath>obj\Android\AnyCPU\Release</IntermediateOutputPath>
     <DocumentationFile>bin\Android\AnyCPU\Release\MonoGame.Framework.xml</DocumentationFile>
-    <DefineConstants>TRACE;OPENGL;OPENAL;ANDROID;GLES;SIMSIP_ANDROID</DefineConstants>
+    <DefineConstants>TRACE;OPENGL;OPENAL;ANDROID;GLES;SIMSIP_ALL;SIMSIP_ANDROID</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
